@@ -18,6 +18,9 @@
         <div class="container">
           <div class="navbar-nav">
             <a class="nav-item nav-link bg-dark text-white" href="<%= root_path %>">Home</a>
+            <% if current_user && current_user.admin %>
+              <a class="nav-item nav-link bg-dark text-white" href="<%= users_path %>">Admin Panel</a>
+            <% end %>
           </div>
           <% if user_signed_in? %>
             <div class="navbar-nav">

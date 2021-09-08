@@ -1,0 +1,26 @@
+<br>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Admin</th>
+      <th class="u-align-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.admin %></td>
+      <td class="u-align-center">
+        <div class="btn-group" role="group" aria-label="Basic outlined example"> 
+          <% if current_user.admin %>
+            <a href="<%= edit_user_path(user) %>" class="btn btn-outline-secondary">Edit</a>
+            <a data-confirm="Are you sure?" data-method="delete" href="<%= user_path(user) %>" class="btn btn-outline-danger">Delete</a>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
