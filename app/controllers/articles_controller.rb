@@ -29,7 +29,8 @@ class ArticlesController < ApplicationController
   def edit; end
 
   def update
-    if article.update(article_params)
+    if current_user == article.user || current_user.admin
+      article.update(article_params)
       redirect_to @article
     else
       render :edit
@@ -50,6 +51,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :article_type)
+    params.require(:article).permit(:title, :body, :article_type, :status)
   end
 end

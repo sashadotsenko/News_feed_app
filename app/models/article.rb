@@ -7,9 +7,18 @@ class Article < ApplicationRecord
 
   PUBLIC = 'public'
   PRIVATE = 'private'
+  UNPUBLISHED = 'unpublished'
+  PUBLISHED = 'published'
+  CANCELED = 'canceled'
 
   enum article_type: {
     public: PUBLIC,
-    private: PRIVATE,
+    private: PRIVATE
+  }, _prefix: true
+
+  enum status: {
+    unpublished: UNPUBLISHED,
+    published: PUBLISHED,
+    canceled: CANCELED
   }, _prefix: true
 end

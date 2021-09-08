@@ -3,6 +3,8 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Status</th>
+      <th>Type</th>
       <th class="u-align-center">Actions</th>
     </tr>
   </thead>
@@ -10,6 +12,8 @@
     <% @articles.each do |article| %>
     <tr>
       <td><%= article.title %></td>
+      <td><%= article.status %></td>
+      <td><%= article.article_type %></td>
       <td class="u-align-center">
         <div class="btn-group" role="group" aria-label="Basic outlined example"> 
           <% if current_user || current_user.admin %>
