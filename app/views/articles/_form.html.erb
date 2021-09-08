@@ -16,7 +16,13 @@
         <option value="unpublished"><%= Article.statuses[:unpublished] %></option>
         <option value="published"><%= Article.statuses[:published] %></option>
         <option value="canceled"><%= Article.statuses[:canceled] %></option>
-      </select>
+      </select><br>
+      <div class="form-group">
+        <%= form.label :image %>
+        <%= image_tag form.object.image_url, style: "width: 200px; display:block" if form.object.cached_image_data %>
+        <%= form.hidden_field :image, value: form.object.cached_image_data %>
+        <%= form.file_field :image %>
+      </div>
     <% elsif current_user %>
       <%= form.label :title, value: 'Title' %>
       <%= form.text_field :title, class: "form-control mb-20" %><br>
@@ -26,7 +32,13 @@
       <select class="form-select mb-20" name='article[article_type]'>
         <option value="public"><%= Article.article_types[:public] %></option>
         <option value="private"><%= Article.article_types[:private] %></option>
-      </select>
+      </select><br>
+      <div class="form-group">
+        <%= form.label :image %>
+        <%= image_tag form.object.image_url, style: "width: 200px; display:block" if form.object.cached_image_data %>
+        <%= form.hidden_field :image, value: form.object.cached_image_data %>
+        <%= form.file_field :image %>
+      </div>
     <% end %>
   </div>
 
