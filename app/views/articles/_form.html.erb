@@ -1,0 +1,17 @@
+<%= form_for (@article) do |form| %>
+  <div class="form-group">
+    <%= form.label :title, value: 'Title' %>
+    <%= form.text_field :title, class: "form-control mb-20" %><br>
+    <%= form.label :body, value: 'Text' %>
+    <%= form.text_area :body, class: "form-control mb-20" %><br>
+    <%= form.label :article_type, value: 'Type' %>
+    <select class="form-select mb-20" name='article[article_type]'>
+      <option value="public"><%= Article.article_types[:public] %></option>
+      <option value="private"><%= Article.article_types[:private] %></option>
+    </select>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= form.submit 'Save Article', class: "btn btn-success btn-sm mt-10" %>
+  </div>
+<% end %>

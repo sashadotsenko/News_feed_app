@@ -13,6 +13,35 @@
   </head>
 
   <body>
+    <header class="bg-dark text-white">
+      <nav class="nav navbar navbar-expand-lg container-fluid">
+        <div class="container">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link bg-dark text-white" href="<%= root_path %>">Home</a>
+          </div>
+          <% if user_signed_in? %>
+            <div class="navbar-nav">
+              <a class="nav-item nav-link bg-dark text-white" href="<%= articles_path %>">Articles</a>
+            </div>
+            <ul class="navbar-nav navbar-right">
+                <li>
+                  <a class="nav-link bg-dark text-white" href="<%= destroy_user_session_path %>">Log Out</a>
+                </li>
+            </ul>
+          <% else %>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item ">
+                  <a class="nav-link bg-dark text-white" href="<%= new_user_session_path %>">Sign in</a>
+                </li>
+                <li>
+                  <a class="nav-link bg-dark text-white" href="<%= new_user_registration_path %>">Sign up</a>
+                </li>
+            </ul>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+
     <div class="container">
       <%= render 'layouts/alerts' %>
       <%= yield %>

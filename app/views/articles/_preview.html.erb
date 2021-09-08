@@ -1,0 +1,27 @@
+<br>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th class="u-align-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td class="u-align-center">
+        <div class="btn-group" role="group" aria-label="Basic outlined example"> 
+          <% if current_user || current_user.admin %>
+            <a href="<%= article_path(article) %>" class="btn btn-outline-info">Show</a>
+            <a href="<%= edit_article_path(article) %>" class="btn btn-outline-secondary">Edit</a>
+            <a data-confirm="Are you sure?" data-method="delete" href="<%= article_path(article) %>" class="btn btn-outline-danger">Delete</a>
+          <% else %>
+            <a href="<%= article_path(article) %>" class="btn btn-outline-secondary">Show</a>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
