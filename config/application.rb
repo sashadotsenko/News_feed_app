@@ -34,5 +34,14 @@ module NewsFeedApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.after_initialize do
+      ActionText::ContentHelper.allowed_attributes.add 'style'
+      ActionText::ContentHelper.allowed_attributes.add 'controls'
+
+      ActionText::ContentHelper.allowed_tags.add 'video'
+      ActionText::ContentHelper.allowed_tags.add 'source'
+
+    end
   end
 end

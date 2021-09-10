@@ -4,7 +4,7 @@
       <div class="container">
         <h1><a class="navbar-brand text-black" href="<%= article_path(article) %>" class="text"><%= article.title %></a></h1>
         <br>
-        <%= truncate article.body, length:650 %>
+        <%= article.content.to_plain_text.truncate(650) %>
       </div>
     </div>
   </article>
