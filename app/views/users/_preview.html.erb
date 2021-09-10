@@ -14,10 +14,8 @@
       <td><%= user.admin %></td>
       <td class="u-align-center">
         <div class="btn-group" role="group" aria-label="Basic outlined example"> 
-          <% if current_user.admin %>
-            <a href="<%= edit_user_path(user) %>" class="btn btn-outline-secondary">Edit</a>
-            <a data-confirm="Are you sure?" data-method="delete" href="<%= user_path(user) %>" class="btn btn-outline-danger">Delete</a>
-          <% end %>
+          <a href="<%= edit_user_path(user) %>" class="btn btn-outline-secondary">Edit</a>
+          <a data-confirm="Are you sure?" data-method="delete" href="<%= user_path(user) %>" class="btn btn-outline-danger">Delete</a>
         </div>
       </td>
     </tr>

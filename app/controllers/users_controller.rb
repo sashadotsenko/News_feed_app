@@ -7,26 +7,39 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def update
-    if user.update(user_params)
+  def new
+    @user = User.new
+  end
+
+  def create
+    if @user = Users::Create.new(users_params).call
       redirect_to users_path
     else
+      render :new
+    end      
+  end
+
+  def update
+    if Users::Update.new(user, user_params).call
       redirect_to users_path
+    else
+      render :edit
     end
   end
 
   def destroy
-    if user.destroy
-      redirect_to users_path
-    else
-      redirect_to users_path
-    end
+    Users::Destroy.new(user).call
+    redirect_to users_path
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:id, :email, :admin)
+    params.require(:user).permit(:admin)
+  end
+
+  def users_params
+    params.require(:users).permit(:email, :password, :admin)
   end
 
   def user

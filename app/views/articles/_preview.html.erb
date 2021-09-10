@@ -16,13 +16,9 @@
       <td><%= article.article_type %></td>
       <td class="u-align-center">
         <div class="btn-group" role="group" aria-label="Basic outlined example"> 
-          <% if current_user || current_user.admin %>
-            <a href="<%= article_path(article) %>" class="btn btn-outline-info">Show</a>
-            <a href="<%= edit_article_path(article) %>" class="btn btn-outline-secondary">Edit</a>
-            <a data-confirm="Are you sure?" data-method="delete" href="<%= article_path(article) %>" class="btn btn-outline-danger">Delete</a>
-          <% else %>
-            <a href="<%= article_path(article) %>" class="btn btn-outline-secondary">Show</a>
-          <% end %>
+          <a href="<%= article_path(article) %>" class="btn btn-outline-info">Show</a>
+          <a href="<%= edit_article_path(article) %>" class="btn btn-outline-secondary">Edit</a>
+          <a data-confirm="Are you sure?" data-method="delete" href="<%= article_path(article) %>" class="btn btn-outline-danger">Delete</a>
         </div>
       </td>
     </tr>

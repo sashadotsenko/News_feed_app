@@ -1,6 +1,6 @@
 <%= form_for (@article) do |form| %>
   <div class="form-group">
-    <% if current_user.admin %>
+    <% if admin? %>
       <%= form.label :title, value: 'Title' %>
       <%= form.text_field :title, class: "form-control mb-20" %><br>
       <%= form.label :body, value: 'Text' %>
@@ -23,7 +23,7 @@
         <%= form.hidden_field :image, value: form.object.cached_image_data %>
         <%= form.file_field :image %>
       </div>
-    <% elsif current_user %>
+    <% else %>
       <%= form.label :title, value: 'Title' %>
       <%= form.text_field :title, class: "form-control mb-20" %><br>
       <%= form.label :body, value: 'Text' %>

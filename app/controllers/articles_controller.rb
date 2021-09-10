@@ -1,11 +1,12 @@
 class ArticlesController < ApplicationController
   before_action :article, only: %i[show edit]
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!
+  helper_method :current_user_or_admin?, :admin?
 
   def index
-    if current_user.admin
+    if admin?
       @articles = Article.all.order(created_at: :desc)
-    elsif current_user
+    else
       @articles = current_user.articles.all.order(created_at: :desc)
     end
   end
@@ -17,9 +18,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = current_user.articles.new(article_params)
-  
-    if @article.save
+    if @article = Articles::Create.new(article_params, current_user).call
       redirect_to @article
     else
       render :new
@@ -29,8 +28,8 @@ class ArticlesController < ApplicationController
   def edit; end
 
   def update
-    if current_user == article.user || current_user.admin
-      article.update(article_params)
+    if current_user_or_admin?
+      Articles::Update.new(article, article_params).call
       redirect_to @article
     else
       render :edit
@@ -38,8 +37,8 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    if current_user == article.user || current_user.admin
-      article.destroy
+    if current_user_or_admin?
+      Articles::Destroy.new(article).call
     end
     redirect_to articles_path
   end
@@ -52,5 +51,13 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :body, :article_type, :status, :image)
+  end
+
+  def current_user_or_admin?
+    current_user == article.user || current_user.admin
+  end
+
+  def admin?
+    current_user.admin
   end
 end

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
   get '/home' => 'pages#home'
-  devise_for :users do
-    get "/users/sign_in" => "devise/sessions#new"
-    get "/users/sign_up" => "devise/registrations#new"
-    get "/users/sign_out" => "devise/sessions#destroy"
-  end
+  devise_for :users 
   resources :articles
-  resources :users, only: [:index, :edit, :update, :destroy]
+
+  authenticate :user, -> (u) { u.admin? } do
+    resources :users, except: :create
+    post 'create_user' => 'users#create', as: :create_user
+  end
 end
