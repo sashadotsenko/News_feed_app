@@ -50,7 +50,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :article_type, :status, :image, :content)
+    params.require(:article).permit(:title, :article_type, :status, :content)
   end
 
   def current_user_or_admin?
