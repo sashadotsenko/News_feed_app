@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
-  devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/home' => 'pages#home'
+  devise_for :users 
+  resources :articles
+
+  authenticate :user, -> (u) { u.admin? } do
+    resources :users, except: :create
+    post 'create_user' => 'users#create', as: :create_user
+  end
 end

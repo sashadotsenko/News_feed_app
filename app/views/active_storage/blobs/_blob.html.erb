@@ -1,0 +1,21 @@
+<figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
+  <% if blob.video? %>
+    <video 
+      controls="false"
+      width="720px"
+      height="auto"
+    >
+      <source src= <%= rails_blob_url(blob) %>, type=<%= blob.content_type %> >
+    </video>
+  <% elsif blob.representable? %>
+    <div class="action-text-image">
+      <%= image_tag blob %>
+    </div>
+  <% end %>
+
+  <figcaption class="attachment__caption">
+    <% if caption = blob.try(:caption) %>
+      <%= caption %>
+    <% end %>
+  </figcaption>
+</figure>

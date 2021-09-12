@@ -1,0 +1,41 @@
+<%= form_for (@article) do |form| %>
+  <div class="form-group">
+    <% if admin? %>
+      <%= form.label :title, value: 'Title' %>
+      <%= form.text_field :title, class: "form-control mb-20" %><br>
+      <%= form.label :article_type, value: 'Type' %>
+      <select class="form-select mb-20" name='article[article_type]'>
+        <option value="public"><%= Article.article_types[:public] %></option>
+        <option value="private"><%= Article.article_types[:private] %></option>
+      </select>
+      <br>
+      <%= form.label :status, value: 'Status' %>
+      <select class="form-select mb-20" name='article[status]'>
+        <option value="unpublished"><%= Article.statuses[:unpublished] %></option>
+        <option value="published"><%= Article.statuses[:published] %></option>
+        <option value="canceled"><%= Article.statuses[:canceled] %></option>
+      </select><br>
+      <div class="form-group">
+        <%= form.label :content %>
+        <%= form.rich_text_area :content %>
+      </div>
+    <% else %>
+      <%= form.label :title, value: 'Title' %>
+      <%= form.text_field :title, class: "form-control mb-20" %><br>
+      <%= form.label :article_type, value: 'Type' %>
+      <select class="form-select mb-20" name='article[article_type]'>
+        <option value="public"><%= Article.article_types[:public] %></option>
+        <option value="private"><%= Article.article_types[:private] %></option>
+      </select><br>
+      <div class="form-group">
+        <%= form.label :content %>
+        <%= form.rich_text_area :content %>
+      </div>
+    <% end %>
+  </div>
+
+  <br>
+  <div class="form-group">
+    <%= form.submit 'Save Article', class: "btn btn-success btn-sm mt-10" %>
+  </div>
+<% end %>

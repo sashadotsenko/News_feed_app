@@ -12,6 +12,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+require("trix")
+require("@rails/actiontext")
 require("bootstrap")
 import "../stylesheets/application";
 document.addEventListener("turbolinks:load", function() {

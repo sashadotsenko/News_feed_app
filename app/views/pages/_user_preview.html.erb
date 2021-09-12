@@ -1,0 +1,11 @@
+<% @articles.each do |article| %>
+  <article class="card mt-3">
+    <div class="card-body">
+      <div class="container">
+        <h1><a class="navbar-brand text-black" href="<%= article_path(article) %>" class="text"><%= article.title %></a></h1>
+        <br>
+        <%= article.content.to_plain_text.truncate(650) %>
+      </div>
+    </div>
+  </article>
+<% end %>

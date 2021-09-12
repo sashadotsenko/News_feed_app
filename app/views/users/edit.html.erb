@@ -1,0 +1,12 @@
+<h2>Edit User</h2>
+<%= @user.email %>
+<%= form_for (@user) do |form| %>
+  <br>
+  <div class="form-group"><br>
+    <%= form.check_box :admin, value: 'Admin' %>
+    <%= form.label :admin, value: 'Admin' %>
+  </div>
+  <div class="form-group"><br>
+    <%= form.submit 'Save', class: "btn btn-success btn-sm mt-10" %>
+  </div>
+<% end %>
